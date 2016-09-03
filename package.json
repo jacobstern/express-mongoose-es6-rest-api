@@ -61,9 +61,7 @@
     "babel-preset-es2015": "6.5.0",
     "babel-preset-stage-2": "6.5.0",
     "chai": "^3.4.1",
-    "commitizen": "^2.8.2",
     "coveralls": "^2.11.6",
-    "cz-conventional-changelog": "1.1.5",
     "del": "^2.2.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "5.0.1",
@@ -84,17 +82,12 @@
     "mocha": "2.5.3",
     "run-sequence": "^1.1.5",
     "supertest": "^1.1.0",
-    "supertest-as-promised": "3.1.0",
-    "validate-commit-msg": "^2.6.1"
+    "supertest-as-promised": "3.1.0"
   },
   "license": "MIT",
   "config": {
     "ghooks": {
-      "pre-commit": "npm run lint && npm test",
-      "commit-msg": "validate-commit-msg"
-    },
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "pre-commit": "npm run lint"
     }
   },
   "babel": {
