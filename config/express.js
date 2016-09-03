@@ -38,7 +38,7 @@ if (config.env === 'development') {
   app.use(expressWinston.logger({
     winstonInstance,
     msg: 'HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
-    colorStatus: true 	// Color the status code (default green, 3XX cyan, 4XX yellow, 5XX red).
+    colorStatus: true,
   }));
 }
 
@@ -47,7 +47,7 @@ app.use('/', routes);
 // Log error in winston transports except when executing test suite
 if (config.env !== 'test') {
   app.use(expressWinston.errorLogger({
-    winstonInstance
+    winstonInstance,
   }));
 }
 

@@ -7,20 +7,17 @@
         "SwitchCase": 1
       }
     ],
-    "space-before-function-paren": [
-      2,
-      {
-        "anonymous": "always",
-        "named": "never"
-      }
-    ],
     "no-use-before-define": [
       2,
       "nofunc"
     ],
-    // TODO: turn on later
     "comma-dangle": [
-      0
+      2,
+      "always-multiline"
+    ],
+    "arrow-body-style": [
+      2,
+      "as-needed"
     ]
   },
   "env": {

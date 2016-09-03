@@ -11,16 +11,16 @@ const plugins = gulpLoadPlugins();
 const paths = {
   js: ['./**/*.js', '!dist/**', '!node_modules/**', '!coverage/**'],
   nonJs: ['./package.json', './.gitignore'],
-  tests: './server/tests/*.js'
+  tests: './server/tests/*.js',
 };
 
 const options = {
   codeCoverage: {
     reporters: ['lcov', 'text-summary'],
     thresholds: {
-      global: { statements: 80, branches: 80, functions: 80, lines: 80 }
-    }
-  }
+      global: { statements: 80, branches: 80, functions: 80, lines: 80 },
+    },
+  },
 };
 
 // Clean up dist and coverage directory
@@ -32,8 +32,8 @@ gulp.task('clean', () =>
 gulp.task('set-env', () => {
   plugins.env({
     vars: {
-      NODE_ENV: 'test'
-    }
+      NODE_ENV: 'test',
+    },
   });
 });
 
@@ -68,7 +68,7 @@ gulp.task('babel', () =>
       includeContent: false,
       sourceRoot(file) {
         return path.relative(file.path, __dirname);
-      }
+      },
     }))
     .pipe(gulp.dest('dist'))
 );
@@ -79,7 +79,7 @@ gulp.task('nodemon', ['lint', 'copy', 'babel'], () =>
     script: path.join('dist', 'index.js'),
     ext: 'js',
     ignore: ['node_modules/**/*.js', 'dist/**/*.js'],
-    tasks: ['lint', 'copy', 'babel']
+    tasks: ['lint', 'copy', 'babel'],
   })
 );
 
@@ -89,7 +89,7 @@ gulp.task('pre-test', () =>
     // Covering files
     .pipe(plugins.istanbul({
       instrumenter: isparta.Instrumenter,
-      includeUntested: true
+      includeUntested: true,
     }))
     // Force `require` to return covered files
     .pipe(plugins.istanbul.hookRequire())
@@ -113,8 +113,8 @@ gulp.task('test', ['pre-test', 'set-env'], () => {
       ui: 'bdd',
       timeout: 6000,
       compilers: {
-        js: babelCompiler
-      }
+        js: babelCompiler,
+      },
     }))
     .once('error', (err) => {
       plugins.util.log(err);
@@ -123,11 +123,11 @@ gulp.task('test', ['pre-test', 'set-env'], () => {
     // Creating the reports after execution of test cases
     .pipe(plugins.istanbul.writeReports({
       dir: './coverage',
-      reporters
+      reporters,
     }))
     // Enforce test coverage
     .pipe(plugins.istanbul.enforceThresholds({
-      thresholds: options.codeCoverage.thresholds
+      thresholds: options.codeCoverage.thresholds,
     }))
     .once('end', () => {
       plugins.util.log('completed !!');
